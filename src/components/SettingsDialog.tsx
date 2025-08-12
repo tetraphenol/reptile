@@ -31,11 +31,11 @@ export function SettingsDialog({ graph, onClose }: { graph: Client; onClose: () 
     <div className="dialog-backdrop" onClick={onClose}>
       <div className="card w-full max-w-lg p-6" onClick={(e) => e.stopPropagation()}>
         <h2 className="text-lg font-semibold mb-4">Settings</h2>
-        <label className="block text-sm mb-1">OpenAI API Key</label>
+        <label className="block text-sm mb-1 text-neutral-300">OpenAI API Key</label>
         <input className="input w-full mb-4" placeholder="sk-..." value={apiKey} onChange={(e) => setApiKey(e.target.value)} />
         <div className="flex gap-2 justify-end">
           <button className="button" onClick={onClose}>Cancel</button>
-          <button className="button" onClick={handleSave} disabled={saving}>{saving ? 'Saving...' : 'Save'}</button>
+          <button className="button-primary" onClick={handleSave} disabled={saving}>{saving ? 'Saving...' : 'Save'}</button>
         </div>
       </div>
     </div>
