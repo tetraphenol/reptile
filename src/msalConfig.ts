@@ -2,7 +2,19 @@ import type { Configuration } from '@azure/msal-browser';
 import { LogLevel } from '@azure/msal-browser';
 
 const clientId = import.meta.env.VITE_MSAL_CLIENT_ID || '';
-const redirectBase = window.location.origin + (import.meta.env.BASE_URL || '/');
+
+function computeRedirectBase(): string {
+  try {
+    const { origin, pathname } = window.location;
+    // Remove filename if present and ensure trailing slash
+    const directory = pathname.replace(/[^/]*$/, '');
+    return origin + directory;
+  } catch {
+    return window.location.origin + '/';
+  }
+}
+
+const redirectBase = computeRedirectBase();
 
 export const msalConfig: Configuration = {
   auth: {
