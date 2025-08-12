@@ -89,14 +89,19 @@ function AppShell() {
     <div className="min-h-screen flex flex-col">
       <header className="sticky top-0 z-10 border-b border-neutral-800 bg-neutral-950/80 backdrop-blur supports-[backdrop-filter]:bg-neutral-950/60">
         <div className="max-w-6xl mx-auto flex items-center gap-3 p-3">
-          <div className="font-semibold text-neutral-300">Reptile</div>
+          <div className="font-semibold bg-gradient-to-r from-brand to-brand-dark bg-clip-text text-transparent">Reptile</div>
           <input
             className="input flex-1"
             value={project?.name || ''}
             onChange={(e) => { if (project) { setProject({ ...project, name: e.target.value }); setDirty(true); } }}
             placeholder="Project name"
           />
-          {saving && <div className="text-xs text-neutral-400">Saving…</div>}
+          {saving && (
+            <div className="flex items-center gap-2 text-xs text-neutral-400">
+              <span className="h-2.5 w-2.5 rounded-full bg-brand animate-pulse"></span>
+              Saving…
+            </div>
+          )}
           {isAuthenticated && graph && (
             <UserMenu onOpenSettings={() => setShowSettings(true)} />
           )}
@@ -107,12 +112,14 @@ function AppShell() {
         {!isAuthenticated && <LoginDialog />}
         {isAuthenticated && isReady && (
           <div className="max-w-6xl mx-auto p-4">
-            <textarea
-              className="input w-full h-[60vh]"
-              placeholder="Start writing your report…"
-              value={project?.content || ''}
-              onChange={(e) => { if (project) { setProject({ ...project, content: e.target.value }); setDirty(true); } }}
-            />
+            <div className="card p-4 md:p-6">
+              <textarea
+                className="input w-full h-[60vh] md:h-[65vh] resize-y leading-relaxed"
+                placeholder="Start writing your report…"
+                value={project?.content || ''}
+                onChange={(e) => { if (project) { setProject({ ...project, content: e.target.value }); setDirty(true); } }}
+              />
+            </div>
           </div>
         )}
       </main>
