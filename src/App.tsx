@@ -90,7 +90,7 @@ function AppShell() {
 
   return (
     <div className="min-h-screen flex flex-col">
-      <header className="sticky top-0 z-10 border-b border-neutral-800 bg-neutral-950/80 backdrop-blur supports-[backdrop-filter]:bg-neutral-950/60">
+      <header className="sticky top-0 z-10 border-b border-zinc-800 bg-zinc-950/80 backdrop-blur supports-[backdrop-filter]:bg-zinc-950/60">
         <div className="max-w-6xl mx-auto flex items-center gap-3 p-3">
           <div className="font-semibold bg-gradient-to-r from-brand to-brand-dark bg-clip-text text-transparent">Reptile</div>
           <Input
@@ -100,7 +100,7 @@ function AppShell() {
             placeholder="Project name"
           />
           {saving && (
-            <div className="flex items-center gap-2 text-xs text-neutral-400">
+            <div className="flex items-center gap-2 text-xs text-zinc-400">
               <span className="h-2.5 w-2.5 rounded-full bg-brand animate-pulse"></span>
               Saving…
             </div>

@@ -14,16 +14,16 @@ export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElemen
 function getVariantClasses(variant: ButtonVariant | undefined): string {
   switch (variant) {
     case 'secondary':
-      return 'bg-neutral-800/80 text-neutral-200 hover:bg-neutral-700/80 border border-neutral-700';
+      return 'bg-zinc-800/80 text-zinc-200 hover:bg-zinc-700/80 border border-zinc-700';
     case 'ghost':
-      return 'bg-transparent hover:bg-neutral-900 text-neutral-200';
+      return 'bg-transparent hover:bg-zinc-900 text-zinc-200';
     case 'outline':
-      return 'bg-transparent border border-neutral-700 hover:bg-neutral-900 text-neutral-200';
+      return 'bg-transparent border border-zinc-700 hover:bg-zinc-900 text-zinc-200';
     case 'destructive':
       return 'bg-red-600 text-white hover:bg-red-700';
     case 'default':
     default:
-      return 'bg-brand text-neutral-950 hover:bg-brand-dark';
+      return 'bg-brand text-zinc-950 hover:bg-brand-dark';
   }
 }
 

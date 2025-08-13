@@ -38,7 +38,7 @@ export const SheetContent = React.forwardRef<HTMLDivElement, React.ComponentProp
       <SheetPrimitive.Content
         ref={ref}
         className={cn(
-          'fixed z-50 bg-neutral-950 p-6 shadow-2xl border-neutral-800',
+          'fixed z-50 bg-zinc-950 p-6 shadow-2xl border-zinc-800',
           'data-[state=open]:animate-in data-[state=closed]:animate-out',
           sideClasses,
           className,
