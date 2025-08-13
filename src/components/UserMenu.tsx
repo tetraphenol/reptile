@@ -1,24 +1,24 @@
-import { useState } from 'react';
 import { useMsal } from '@azure/msal-react';
+import { Button } from './ui/button';
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from './ui/dropdown-menu';
 
 export function UserMenu({ onOpenSettings }: { onOpenSettings: () => void }) {
   const { accounts, instance } = useMsal();
   const account = accounts[0];
-  const [open, setOpen] = useState(false);
 
   const logout = async () => {
     await instance.logoutPopup();
   };
 
   return (
-    <div className="relative">
-      <button className="button" onClick={() => setOpen((v) => !v)}>{account?.name || 'Account'}</button>
-      {open && (
-        <div className="absolute right-0 mt-2 w-56 card p-2 shadow-xl">
-          <button className="button w-full mb-2" onClick={() => { setOpen(false); onOpenSettings(); }}>Settings</button>
-          <button className="button w-full" onClick={logout}>Sign out</button>
-        </div>
-      )}
-    </div>
+    <DropdownMenu>
+      <DropdownMenuTrigger asChild>
+        <Button variant="secondary">{account?.name || 'Account'}</Button>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent align="end" className="w-56">
+        <DropdownMenuItem onClick={onOpenSettings}>Settings</DropdownMenuItem>
+        <DropdownMenuItem onClick={logout}>Sign out</DropdownMenuItem>
+      </DropdownMenuContent>
+    </DropdownMenu>
   );
 }

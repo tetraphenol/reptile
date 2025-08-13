@@ -1,5 +1,7 @@
 import { useMsal } from '@azure/msal-react';
 import { loginRequest } from '../msalConfig';
+import { Button } from './ui/button';
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from './ui/dialog';
 
 export function LoginDialog() {
   const { instance } = useMsal();
@@ -9,12 +11,14 @@ export function LoginDialog() {
   };
 
   return (
-    <div className="dialog-backdrop">
-      <div className="card w-full max-w-md p-6">
-        <h2 className="text-lg font-semibold mb-2 bg-gradient-to-r from-brand to-brand-dark bg-clip-text text-transparent">Sign in to Microsoft</h2>
-        <p className="text-sm text-neutral-400 mb-4">Connect your OneDrive to store Reptile settings and projects.</p>
-        <button className="button-primary w-full" onClick={handleLogin}>Sign in with Microsoft</button>
-      </div>
-    </div>
+    <Dialog open>
+      <DialogContent className="w-full max-w-md">
+        <DialogHeader>
+          <DialogTitle className="bg-gradient-to-r from-brand to-brand-dark bg-clip-text text-transparent">Sign in to Microsoft</DialogTitle>
+          <DialogDescription>Connect your OneDrive to store Reptile settings and projects.</DialogDescription>
+        </DialogHeader>
+        <Button className="w-full" onClick={handleLogin}>Sign in with Microsoft</Button>
+      </DialogContent>
+    </Dialog>
   );
 }
