@@ -30,7 +30,7 @@ export const DialogContent = React.forwardRef<HTMLDivElement, React.ComponentPro
       <DialogPrimitive.Content
         ref={ref}
         className={cn(
-          'fixed left-1/2 top-1/2 z-50 grid w-full max-w-lg -translate-x-1/2 -translate-y-1/2 gap-4 border border-neutral-800 bg-neutral-950 p-6 shadow-2xl duration-200 rounded-xl data-[state=open]:animate-in data-[state=closed]:animate-out',
+          'fixed left-1/2 top-1/2 z-50 grid w-full max-w-lg -translate-x-1/2 -translate-y-1/2 gap-4 border border-zinc-800 bg-zinc-950 p-6 shadow-2xl duration-200 rounded-xl data-[state=open]:animate-in data-[state=closed]:animate-out',
           className,
         )}
         {...props}
@@ -60,5 +60,5 @@ export const DialogDescription = React.forwardRef<HTMLParagraphElement, React.Co
   { className, ...props },
   ref,
 ) {
-  return <DialogPrimitive.Description ref={ref} className={cn('text-sm text-neutral-400', className)} {...props} />;
+  return <DialogPrimitive.Description ref={ref} className={cn('text-sm text-zinc-400', className)} {...props} />;
 });
