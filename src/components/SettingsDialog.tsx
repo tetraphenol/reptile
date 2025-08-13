@@ -2,6 +2,10 @@ import { useEffect, useState } from 'react';
 import type { Client } from '@microsoft/microsoft-graph-client';
 import { ensureBaseFolders, readJsonFile, writeJsonFile } from '../onedrive';
 import type { Settings } from '../models';
+import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle } from './ui/dialog';
+import { Label } from './ui/label';
+import { Input } from './ui/input';
+import { Button } from './ui/button';
 
 export function SettingsDialog({ graph, onClose }: { graph: Client; onClose: () => void }) {
   const [apiKey, setApiKey] = useState('');
@@ -28,16 +32,20 @@ export function SettingsDialog({ graph, onClose }: { graph: Client; onClose: () 
   };
 
   return (
-    <div className="dialog-backdrop" onClick={onClose}>
-      <div className="card w-full max-w-lg p-6" onClick={(e) => e.stopPropagation()}>
-        <h2 className="text-lg font-semibold mb-4">Settings</h2>
-        <label className="block text-sm mb-1 text-neutral-300">OpenAI API Key</label>
-        <input className="input w-full mb-4" placeholder="sk-..." value={apiKey} onChange={(e) => setApiKey(e.target.value)} />
-        <div className="flex gap-2 justify-end">
-          <button className="button" onClick={onClose}>Cancel</button>
-          <button className="button-primary" onClick={handleSave} disabled={saving}>{saving ? 'Saving...' : 'Save'}</button>
+    <Dialog open onOpenChange={(open) => { if (!open) onClose(); }}>
+      <DialogContent className="w-full max-w-lg">
+        <DialogHeader>
+          <DialogTitle>Settings</DialogTitle>
+        </DialogHeader>
+        <div className="space-y-2">
+          <Label htmlFor="apiKey">OpenAI API Key</Label>
+          <Input id="apiKey" placeholder="sk-..." value={apiKey} onChange={(e) => setApiKey(e.target.value)} />
         </div>
-      </div>
-    </div>
+        <DialogFooter className="mt-4">
+          <Button variant="secondary" onClick={onClose}>Cancel</Button>
+          <Button onClick={handleSave} disabled={saving}>{saving ? 'Saving...' : 'Save'}</Button>
+        </DialogFooter>
+      </DialogContent>
+    </Dialog>
   );
 }
